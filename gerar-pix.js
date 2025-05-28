@@ -1,0 +1,23 @@
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ erro: 'Método não permitido' });
+  }
+
+  const { descricao, valor, vencimento } = req.body;
+
+  try {
+    const response = await fetch("https://api.blackpayoficial.com/pix/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 6n5g0gk3sf60tz8ucctc8ltcki6d2m8xmoj2h11h72ake77dz1gzqb4pvf54ytoz" // substitua aqui
+      },
+      body: JSON.stringify({ descricao, valor, vencimento })
+    });
+
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao gerar Pix", detalhes: err.message });
+  }
+}
