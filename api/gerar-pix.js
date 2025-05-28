@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer SEU_TOKEN_AQUI"
+        "Authorization": "Bearer 6n5g0gk3sf60tz8ucctc8ltcki6d2m8xmoj2h11h72ake77dz1gzqb4pvf54ytoz"
       },
       body: JSON.stringify({ descricao, valor, vencimento })
     });
