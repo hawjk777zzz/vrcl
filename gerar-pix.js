@@ -1,4 +1,12 @@
 export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ erro: 'Método não permitido' });
   }
@@ -10,7 +18,7 @@ export default async function handler(req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 6n5g0gk3sf60tz8ucctc8ltcki6d2m8xmoj2h11h72ake77dz1gzqb4pvf54ytoz" // substitua aqui
+        "Authorization": "Bearer SEU_TOKEN_AQUI"
       },
       body: JSON.stringify({ descricao, valor, vencimento })
     });
